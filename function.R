@@ -13,6 +13,7 @@ gginteractive <- function(interactive = TRUE, ...) {
 ggplot_add.gginteractive <- function (object, plot, object_name) object(plot)
 
 
+# dfから、同じ定義の空のdfを作成
 define_0rowdf_with_otherdf <- function(odf){
   
   def_text <- "data.frame("
@@ -27,3 +28,12 @@ define_0rowdf_with_otherdf <- function(odf){
   return(eval(parse(text = def_text)))
 }
 
+# すでにフラグをつけてある箇所を抜いて、反転させる
+set_flag_without_prev <- function(x, n, tf = TRUE){
+  if(tf) # TRUEベース
+    x[x][n] <- FALSE
+  else # FALSEベース
+    x[!x][n] <- TRUE
+  
+  return(x)
+}
